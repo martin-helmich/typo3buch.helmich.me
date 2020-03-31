@@ -15,6 +15,7 @@ jobs:
 
       - name: Build app
         run: |
+          yarn install
           yarn build
 
       - name: GitHub Pages
