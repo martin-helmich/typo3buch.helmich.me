@@ -10,8 +10,14 @@ interface EditionDisplayProps {
 }
 
 export function EditionDisplay({ edition }: EditionDisplayProps) {
+    const title = `Praxiswissen TYPO3 ${edition.version}, ${edition.edition}. Auflage`;
     return <div className="card">
-        <img className="card-img-top" src={edition.image} />
+        <img
+            className="card-img-top"
+            src={edition.image}
+            alt={title}
+            title={title}
+        />
         <div className="card-body">
             <EditionDownloadButton edition={edition} />
             <EditionGithubButton edition={edition}/>

@@ -7,9 +7,9 @@ import EditionSelector from './EditionSelector';
 import Footer from "./Footer";
 
 const editions = [
-    new Edition(11, "10.4", "edition-11", "", e10, false),
-    new Edition(10, "9.5", "edition-10", "13303", e10),
-    new Edition(9, "8.7", "edition-9", "13123", e9),
+    new Edition(11, "10.4", "", e10, false),
+    new Edition(10, "9.5", "13303", e10),
+    new Edition(9, "8.7", "13123", e9),
 ];
 
 function App() {
