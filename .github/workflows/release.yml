@@ -13,14 +13,18 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Build app
+        run: |
+          yarn build
+
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v1.3.0
         with:
           target_branch: gh-pages
           keep_history: true
           build_dir: build
-          committer_name: Github Actions
-          committer_email: typo3buch@helmich.me
+          committer_name: Helmich-Bot
+          committer_email: github-bot@helmich.me
           fqdn: typo3buch.helmich.me
         env:
           GITHUB_TOKEN: ${{ secrets.token }}
