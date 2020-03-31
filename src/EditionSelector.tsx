@@ -57,7 +57,7 @@ const EditionSelector: FunctionComponent<EditionSelectorProps> = ({editions, chi
     }
 
     return <div className="row align-items-center">
-        <div className="col-lg-7 col-md-6 col-sm-4 mt-md-3 mb-5">
+        <div className="col-lg-7 col-md-6 col-sm-4 mt-md-3 mb-5 left">
             {children}
 
             <h3>Mit welcher Auflage arbeiten Sie?</h3>
