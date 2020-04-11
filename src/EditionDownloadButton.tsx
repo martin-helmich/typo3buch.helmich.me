@@ -49,7 +49,7 @@ export function EditionDownloadButton({edition}: EditionDownloadButtonProps) {
 
     const releasesForEdition = knownReleases
         .filter(r => r.name.startsWith(edition.branch))
-        .sort((a, b) => a.name > b.name ? 1 : -1);
+        .sort((a, b) => a.name < b.name ? 1 : -1);
 
     if (releasesForEdition.length === 0) {
         throw new Error(`no release available`);
