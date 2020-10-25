@@ -1,5 +1,5 @@
-import React, {FunctionComponent, useState} from 'react';
-import {Edition} from "./Edition";
+import React, { FunctionComponent, useState } from 'react';
+import { Edition } from "./Edition";
 import EditionDisplay from "./EditionDisplay";
 import './EditionSelector.scss';
 import EditionSelectorItem from "./EditionSelectorItem";
@@ -37,16 +37,18 @@ function selectEdition(editions: Edition[]): Edition {
     throw new Error("no editions given");
 }
 
-const EditionSelector: FunctionComponent<EditionSelectorProps> = ({editions, children}) => {
+const EditionSelector: FunctionComponent<EditionSelectorProps> = ({ editions, children }) => {
     const [selected, setSelected] = useState(selectEdition(editions));
 
     const editionButtons: JSX.Element[] = [];
+    const now = new Date();
 
     for (const e of editions) {
         const item = <EditionSelectorItem
             key={e.edition}
             edition={e}
             selected={selected}
+            now={now}
             onClick={() => {
                 setSelected(e);
                 document.location.hash = e.version;
@@ -64,7 +66,7 @@ const EditionSelector: FunctionComponent<EditionSelectorProps> = ({editions, chi
             {editionButtons}
         </div>
         <div className="col-lg-5 col-md-6 col-sm-8 right">
-            <EditionDisplay edition={selected}/>
+            <EditionDisplay edition={selected} />
         </div>
     </div>;
 }

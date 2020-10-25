@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Edition} from "./Edition";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDownload, faExclamationTriangle, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faExclamationTriangle, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from 'react';
+import { Edition } from "./Edition";
 
 interface EditionDownloadButtonProps {
     edition: Edition;
@@ -20,7 +20,7 @@ interface Release {
     assets: ReleaseAsset[];
 }
 
-export function EditionDownloadButton({edition}: EditionDownloadButtonProps) {
+export function EditionDownloadButton({ edition }: EditionDownloadButtonProps) {
     const [knownReleases, setKnownReleases] = useState<Release[]>();
     const [error, setError] = useState<any>();
     const url = `https://api.github.com/repos/martin-helmich/praxiswissen-typo3/releases`;
@@ -29,20 +29,21 @@ export function EditionDownloadButton({edition}: EditionDownloadButtonProps) {
         fetch(url)
             .then(async resp => {
                 setKnownReleases(await resp.json());
+                setError(undefined);
             })
             .catch(error => {
                 setError(error)
             });
 
         return <button disabled={true} className="btn btn-block btn-primary">
-            <FontAwesomeIcon icon={faSpinner}/>
+            <FontAwesomeIcon icon={faSpinner} />
             Dateien herunterladen
         </button>
     }
 
     if (error) {
         return <button disabled={true} className="btn btn-block btn-danger">
-            <FontAwesomeIcon icon={faExclamationTriangle}/>
+            <FontAwesomeIcon icon={faExclamationTriangle} />
             Download nicht verfügbar
         </button>
     }
@@ -52,7 +53,10 @@ export function EditionDownloadButton({edition}: EditionDownloadButtonProps) {
         .sort((a, b) => a.name < b.name ? 1 : -1);
 
     if (releasesForEdition.length === 0) {
-        throw new Error(`no release available`);
+        return <button disabled={true} className="btn btn-block btn-warning">
+            <FontAwesomeIcon icon={faExclamationTriangle} />
+            Download nicht verfügbar
+        </button>
     }
 
     return <a
@@ -61,7 +65,7 @@ export function EditionDownloadButton({edition}: EditionDownloadButtonProps) {
         target="_blank"
         className="btn btn-block btn-primary"
     >
-        <FontAwesomeIcon icon={faDownload}/>
+        <FontAwesomeIcon icon={faDownload} />
         Dateien herunterladen
     </a>;
 }

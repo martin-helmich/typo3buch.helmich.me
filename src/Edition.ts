@@ -2,9 +2,10 @@ export class Edition {
     public constructor(
         public readonly edition: number,
         public readonly version: string,
-        public readonly vendorID: string,
+        public readonly vendorURL: string,
         public readonly image: string,
         public readonly available: boolean = true,
+        public readonly release?: Date
     ) { }
 
     public get branch(): string {
@@ -16,7 +17,4 @@ export class Edition {
         return `https://github.com/martin-helmich/praxiswissen-typo3/tree/${this.branch}`;
     }
 
-    public get vendorURL(): string {
-        return `https://www.oreilly.de/buecher/${this.vendorID}.html`;
-    }
 }

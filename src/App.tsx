@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import {Edition} from './Edition';
+import { Edition } from './Edition';
 import e10 from './edition10.jpg';
+import e11 from './edition11.jpg';
 import e9 from './edition9.jpg';
 import EditionSelector from './EditionSelector';
 import Footer from "./Footer";
 
 const editions = [
-    // new Edition(11, "10.4", "", e10, false),
-    new Edition(10, "9.5", "13303", e10),
-    new Edition(9, "8.7", "13123", e9),
+    new Edition(11, "10.4", "https://dpunkt.de/produkt/praxiswissen-typo3-cms-10-lts/", e11, true, new Date("2020-11-30")),
+    new Edition(10, "9.5", "https://www.oreilly.de/buecher/13303.html", e10),
+    new Edition(9, "8.7", "https://www.oreilly.de/buecher/13123.html", e9),
 ];
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
                         <div className="d-none d-md-block">{header}</div>
                     </EditionSelector>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         </div>
     );
