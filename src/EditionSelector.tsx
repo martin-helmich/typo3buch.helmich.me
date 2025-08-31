@@ -1,5 +1,5 @@
 import React, {FunctionComponent, PropsWithChildren, useState} from 'react';
-import { Edition } from "./Edition";
+import {Edition} from "./Edition";
 import EditionDisplay from "./EditionDisplay";
 import './EditionSelector.scss';
 import EditionSelectorItem from "./EditionSelectorItem";
@@ -37,10 +37,10 @@ function selectEdition(editions: Edition[]): Edition {
     throw new Error("no editions given");
 }
 
-const EditionSelector: FunctionComponent<PropsWithChildren<EditionSelectorProps>> = ({ editions, children }) => {
+const EditionSelector: FunctionComponent<PropsWithChildren<EditionSelectorProps>> = ({editions, children}) => {
     const [selected, setSelected] = useState(selectEdition(editions));
 
-    const editionButtons: Element[] = [];
+    const editionButtons: React.ReactNode[] = [];
     const now = new Date();
 
     for (const e of editions) {
@@ -63,10 +63,12 @@ const EditionSelector: FunctionComponent<PropsWithChildren<EditionSelectorProps>
             {children}
 
             <h3>Mit welcher Auflage arbeiten Sie?</h3>
-            {editionButtons}
+            <div className="d-grid gap-2">
+                {editionButtons}
+            </div>
         </div>
         <div className="col-lg-5 col-md-6 col-sm-8 right">
-            <EditionDisplay edition={selected} />
+            <EditionDisplay edition={selected}/>
         </div>
     </div>;
 }

@@ -18,7 +18,7 @@ export function EditionDisplay({ edition }: EditionDisplayProps) {
             alt={title}
             title={title}
         />
-        <div className="card-body">
+        <div className="card-body d-grid gap-2">
             <EditionDownloadButton edition={edition} />
             <EditionGithubButton edition={edition}/>
             <EditionVendorButton edition={edition}/>

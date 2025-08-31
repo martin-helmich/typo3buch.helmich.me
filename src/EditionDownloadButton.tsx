@@ -1,15 +1,10 @@
-import { faDownload, faExclamationTriangle, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from 'react';
-import { Edition } from "./Edition";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React, {useState} from 'react';
+import {Edition} from "./Edition";
 
 interface EditionDownloadButtonProps {
     edition: Edition;
 }
-
-type EditionDownloadButtonState = undefined
-    | { knownReleases: Release[] }
-    | { error: any };
 
 interface ReleaseAsset {
     browser_download_url: string;
@@ -36,14 +31,14 @@ export function EditionDownloadButton({ edition }: EditionDownloadButtonProps) {
             });
 
         return <button disabled={true} className="btn btn-block btn-primary">
-            <FontAwesomeIcon icon={faSpinner} />
+            <FontAwesomeIcon icon="spinner" />
             Dateien herunterladen
         </button>
     }
 
     if (error) {
         return <button disabled={true} className="btn btn-block btn-danger">
-            <FontAwesomeIcon icon={faExclamationTriangle} />
+            <FontAwesomeIcon icon="exclamation-triangle" />
             Download nicht verfügbar
         </button>
     }
@@ -54,7 +49,7 @@ export function EditionDownloadButton({ edition }: EditionDownloadButtonProps) {
 
     if (releasesForEdition.length === 0) {
         return <button disabled={true} className="btn btn-block btn-warning">
-            <FontAwesomeIcon icon={faExclamationTriangle} />
+            <FontAwesomeIcon icon="exclamation-triangle" />
             Download nicht verfügbar
         </button>
     }
@@ -65,7 +60,7 @@ export function EditionDownloadButton({ edition }: EditionDownloadButtonProps) {
         target="_blank"
         className="btn btn-block btn-primary"
     >
-        <FontAwesomeIcon icon={faDownload} />
+        <FontAwesomeIcon icon="download" />
         Dateien herunterladen
     </a>;
 }
