@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, {FunctionComponent, PropsWithChildren, useState} from 'react';
 import { Edition } from "./Edition";
 import EditionDisplay from "./EditionDisplay";
 import './EditionSelector.scss';
@@ -37,10 +37,10 @@ function selectEdition(editions: Edition[]): Edition {
     throw new Error("no editions given");
 }
 
-const EditionSelector: FunctionComponent<EditionSelectorProps> = ({ editions, children }) => {
+const EditionSelector: FunctionComponent<PropsWithChildren<EditionSelectorProps>> = ({ editions, children }) => {
     const [selected, setSelected] = useState(selectEdition(editions));
 
-    const editionButtons: JSX.Element[] = [];
+    const editionButtons: Element[] = [];
     const now = new Date();
 
     for (const e of editions) {
