@@ -9,7 +9,7 @@ interface EditionDisplayProps {
 export function EditionGithubButton({edition}: EditionDisplayProps) {
     return <a
         href={edition.githubURL}
-        /* eslint-disable-next-line react/jsx-no-target-blank */
+        rel="noreferrer"
         target="_blank"
         className="btn btn-block btn-light"
     >
