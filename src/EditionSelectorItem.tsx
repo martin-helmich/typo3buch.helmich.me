@@ -9,12 +9,12 @@ interface EditionSelectorItemProps {
 }
 
 function EditionSelectorItem({ edition, selected, now, onClick }: EditionSelectorItemProps) {
-    const classNames = ["btn", "btn-light", "btn-block"];
+    const classNames = ["btn", "btn-light"];
 
     if (!edition.available) {
         return <button className={classNames.join(" ")} disabled={true}>
             {edition.edition}. Auflage, für TYPO3 {edition.version}&nbsp;
-            <span className="badge badge-success">COMING SOON</span>
+            <span className="badge text-bg-success">COMING SOON</span>
         </button>;
     }
 
@@ -25,7 +25,7 @@ function EditionSelectorItem({ edition, selected, now, onClick }: EditionSelecto
 
         return <button className={classNames.join(" ")} onClick={onClick}>
             {edition.edition}. Auflage, für TYPO3 {edition.version}&nbsp;
-            <span className="badge badge-success">Verfügbar ab {day}. {month}. {year}</span>
+            <span className="badge text-bg-success">Verfügbar ab {day}. {month}. {year}</span>
         </button>;
     }
 
