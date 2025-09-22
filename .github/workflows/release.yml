@@ -44,6 +44,10 @@ jobs:
         mkdir -p /root/.ssh
         echo "${{ secrets.MITTWALD_SSH_PRIVATE_KEY_B64 }}" | base64 -d > /root/.ssh/deploy
         chmod 600 /root/.ssh/deploy
+    - name: Install rsync
+      run: |
+        apt-get update
+        apt-get install -y rsync
     - name: Upload to mittwald
       run: |
         /app/mw/bin/mw app upload --source=. ${{ vars.MITTWALD_APP_ID }}
