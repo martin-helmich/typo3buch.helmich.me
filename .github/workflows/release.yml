@@ -41,6 +41,7 @@ jobs:
         name: build
     - name: Deploy private key
       run: |
+        mkdir -p /root/.ssh
         echo "${{ secrets.MITTWALD_SSH_PRIVATE_KEY_B64 }}" | base64 -d > /root/.ssh/deploy
         chmod 600 /root/.ssh/deploy
     - name: Upload to S3
