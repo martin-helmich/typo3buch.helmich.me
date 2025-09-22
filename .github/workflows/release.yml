@@ -47,7 +47,7 @@ jobs:
     - name: Install rsync
       run: |
         apt-get update
-        apt-get install -y rsync
+        apt-get install -y rsync openssh-client
     - name: Upload to mittwald
       run: |
         /app/mw/bin/mw app upload --source=. ${{ vars.MITTWALD_APP_ID }}
