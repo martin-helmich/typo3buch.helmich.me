@@ -48,6 +48,9 @@ jobs:
       run: |
         apt-get update
         apt-get install -y rsync openssh-client
+    - name: Populate known hosts
+      run: |
+        echo 'ssh.gestringen.project.host ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCv2Ojw4TM0+jFyxUgd9EzAAb8mXIzG24yS4V0Md7yphrl9vgZOyEKFhy8KfXAN1qnT1lMQKwfRqthVnfQbbSBGLSrwF1ecbnNtcXX5eAPIP7ycI+PAJJsLmV2099DpXEh9bOrf+vai29OBwtrq1ukFXatocJbC4nKSPWaFuC6yPcgqTTGMZM3ZxVhl6ONtWyao/IoGgTIHiPGxvKqcmqYYU8Zs6VSnYqQ0Sp+v1S5lgECZsDZf+EvBUe53QW8hzqm7z54ef4Qwhn13ODXU7L75LbfKbe0NJdz5higqaiz9BuIMjfbOsBHSTau5suP5fg/3nWsB3KTjl+P1B4Ipow53' >> /root/.ssh/known_hosts
     - name: Upload to mittwald
       run: |
         /app/mw/bin/mw app upload --source=. ${{ vars.MITTWALD_APP_ID }}
