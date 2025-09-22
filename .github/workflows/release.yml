@@ -22,13 +22,29 @@ jobs:
           yarn install
           yarn build
 
-      - name: GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v4.2.0
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
         with:
-          target_branch: gh-pages
-          keep_history: true
-          build_dir: build
-          committer: Helmich-Bot <github-bot@helmich.me>
-          fqdn: typo3buch.helmich.me
-        env:
-          GH_PAT: ${{ secrets.TOKEN }}
+          name: build
+          path: |
+            build
+  
+  publish:
+    runs-on: ubuntu-latest
+    container:
+      image: mittwald/cli
+    steps:
+    - name: Download a single artifact
+      uses: actions/download-artifact@v5
+      with:
+        name: build
+    - name: Deploy private key
+      run: |
+        echo "${{ secrets.MITTWALD_SSH_PRIVATE_KEY_B64 }}" | base64 -d > /root/.ssh/deploy
+        chmod 600 /root/.ssh/deploy
+    - name: Upload to S3
+      run: |
+        mw app upload --source=build ${{ vars.MITTWALD_APP_ID }}
+      env:
+        MITTWALD_API_TOKEN: ${{ secrets.MITTWALD_API_TOKEN }}
+        MITTWALD_SSH_USER: ${{ vars.MITTWALD_SSH_USER }}
