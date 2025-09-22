@@ -31,4 +31,4 @@ jobs:
           committer: Helmich-Bot <github-bot@helmich.me>
           fqdn: typo3buch.helmich.me
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GH_PAT: ${{ secrets.TOKEN }}
